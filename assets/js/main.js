@@ -344,6 +344,69 @@
     });
   })();
 
+  /* ---------- Koto-style motion ---------- */
+  if (!reduceMotion) {
+    document.querySelectorAll('h2').forEach(function (h) {
+      if (h.querySelector('*')) return;
+      var words = h.textContent.trim().split(/\s+/);
+      h.textContent = '';
+      h.classList.add('mask-h');
+      h.classList.remove('reveal');
+      words.forEach(function (w, i) {
+        var mw = document.createElement('span'); mw.className = 'mw';
+        var mwi = document.createElement('span'); mwi.className = 'mwi';
+        mwi.style.setProperty('--i', i); mwi.textContent = w;
+        mw.appendChild(mwi); h.appendChild(mw);
+        h.appendChild(document.createTextNode(' '));
+      });
+    });
+  }
+
+  if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+    var badge = document.createElement('div');
+    badge.className = 'cursor-badge'; badge.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(badge);
+    var bx = 0, by = 0, tx = 0, ty = 0, raf = null;
+    var loop = function () {
+      bx += (tx - bx) * 0.22; by += (ty - by) * 0.22;
+      badge.style.left = bx + 'px'; badge.style.top = by + 'px';
+      raf = (Math.abs(tx - bx) > 0.5 || Math.abs(ty - by) > 0.5) ? requestAnimationFrame(loop) : null;
+    };
+    document.querySelectorAll('.work-grid').forEach(function (grid) {
+      grid.addEventListener('mousemove', function (e) {
+        tx = e.clientX; ty = e.clientY;
+        if (!raf) raf = requestAnimationFrame(loop);
+      });
+      grid.querySelectorAll('.work-card').forEach(function (card) {
+        card.addEventListener('mouseenter', function () {
+          grid.classList.add('has-focus'); card.classList.add('is-focus');
+          if (card.querySelector('a')) {
+            badge.innerHTML = 'View case <span aria-hidden="true">\u2197</span>';
+            badge.classList.add('show');
+          }
+        });
+        card.addEventListener('mouseleave', function () {
+          grid.classList.remove('has-focus'); card.classList.remove('is-focus');
+          badge.classList.remove('show');
+        });
+      });
+    });
+  }
+
+  var roll = document.getElementById('heroRoll');
+  if (roll && !reduceMotion) {
+    var items = Array.prototype.slice.call(roll.children);
+    var ri = 0;
+    setInterval(function () {
+      var cur = items[ri];
+      ri = (ri + 1) % items.length;
+      var nxt = items[ri];
+      cur.classList.remove('on'); cur.classList.add('bye');
+      nxt.classList.remove('bye'); nxt.classList.add('on');
+      setTimeout(function () { cur.classList.remove('bye'); }, 220);
+    }, 2800);
+  }
+
   /* ---------- Reveal on scroll ---------- */
   if (!reduceMotion && 'IntersectionObserver' in window) {
 var io = new IntersectionObserver(function (entries) {
@@ -351,9 +414,9 @@ var io = new IntersectionObserver(function (entries) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    document.querySelectorAll('.reveal, .mask-h').forEach(function (el) { io.observe(el); });
   } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    document.querySelectorAll('.reveal, .mask-h').forEach(function (el) { el.classList.add('in'); });
   }
 
   /* ---------- Footer year ---------- */
