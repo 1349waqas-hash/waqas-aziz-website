@@ -1,4 +1,4 @@
 # robots.txt for the Waqas Aziz website
 User-agent: *
 Allow: /
-Sitemap: https://1349waqas-hash.github.io/waqas-aziz-website/sitemap.xml
+Sitemap: https://designbywaqasaziz.github.io/sitemap.xml
