@@ -143,8 +143,54 @@
   var form = document.getElementById('projectForm');
   if (form) {
     var note = document.getElementById('formNote');
-    var dl = document.getElementById('f-deadline');
-    if (dl) { var t = new Date(); dl.min = t.toISOString().split('T')[0]; }
+    // Custom calendar for the deadline field.
+    var calInput = document.getElementById('f-deadline');
+    var calValue = document.getElementById('f-deadline-value');
+    var calPop = document.getElementById('calPop');
+    if (calInput && calPop) {
+      var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var DOWS = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+      var calToday = new Date(); calToday.setHours(0,0,0,0);
+      var vy = calToday.getFullYear(), vm = calToday.getMonth(), selISO = '';
+      var p2 = function (n) { return String(n).padStart(2, '0'); };
+      var iso = function (d) { return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()); };
+      var nice = function (d) { return d.getDate() + ' ' + MONTHS[d.getMonth()].slice(0, 3) + ' ' + d.getFullYear(); };
+      var renderCal = function () {
+        document.getElementById('calTitle').textContent = MONTHS[vm] + ' ' + vy;
+        var grid = document.getElementById('calGrid');
+        grid.innerHTML = '';
+        DOWS.forEach(function (d) {
+          var s = document.createElement('span'); s.className = 'dow'; s.textContent = d; grid.appendChild(s);
+        });
+        var offset = (new Date(vy, vm, 1).getDay() + 6) % 7;
+        for (var i = 0; i < offset; i++) grid.appendChild(document.createElement('span'));
+        var days = new Date(vy, vm + 1, 0).getDate();
+        for (var d = 1; d <= days; d++) {
+          (function (day) {
+            var dt = new Date(vy, vm, day);
+            var b = document.createElement('button');
+            b.type = 'button'; b.textContent = day;
+            b.disabled = dt < calToday;
+            if (iso(dt) === iso(calToday)) b.classList.add('today');
+            if (iso(dt) === selISO) b.classList.add('sel');
+            b.addEventListener('click', function () {
+              selISO = iso(dt);
+              calInput.value = nice(dt);
+              calValue.value = selISO;
+              calPop.hidden = true;
+            });
+            grid.appendChild(b);
+          })(d);
+        }
+      };
+      var toggleCal = function () { calPop.hidden ? (renderCal(), calPop.hidden = false) : calPop.hidden = true; };
+      document.getElementById('calOpen').addEventListener('click', function (e) { e.stopPropagation(); toggleCal(); });
+      calInput.addEventListener('click', toggleCal);
+      document.getElementById('calPrev').addEventListener('click', function () { vm--; if (vm < 0) { vm = 11; vy--; } renderCal(); });
+      document.getElementById('calNext').addEventListener('click', function () { vm++; if (vm > 11) { vm = 0; vy++; } renderCal(); });
+      document.addEventListener('click', function (e) { if (!e.target.closest('.cal-wrap')) calPop.hidden = true; });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') calPop.hidden = true; });
+    }
     // Brief: allow at most 3 personality picks.
     var pboxes = form.querySelectorAll('input[name="personality"]');
     pboxes.forEach(function (box) {
