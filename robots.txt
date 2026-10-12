@@ -1,5 +1,4 @@
 # robots.txt for the Waqas Aziz website
-# NOTE: https://waqas-aziz.netlify.app is a placeholder domain until the real domain is connected.
 User-agent: *
 Allow: /
-Sitemap: https://waqas-aziz.netlify.app/sitemap.xml
+Sitemap: https://1349waqas-hash.github.io/waqas-aziz-website/sitemap.xml
