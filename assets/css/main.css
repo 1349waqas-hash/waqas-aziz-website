@@ -459,6 +459,7 @@ main { padding-top: var(--header-h); }
 .field input[type="email"],
 .field input[type="url"],
 .field input[type="tel"],
+.field input[type="date"],
 .field select,
 .field textarea {
   width: 100%; background: rgba(247, 248, 245, 0.04);
@@ -755,3 +756,5 @@ main { padding-top: var(--header-h); }
 .work-grid .work-card:nth-child(4n+2) { --d: .09s; }
 .work-grid .work-card:nth-child(4n+3) { --d: .18s; }
 .work-grid .work-card:nth-child(4n+4) { --d: .27s; }
+
+.field input[type="date"] { color-scheme: dark; }

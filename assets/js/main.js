@@ -143,6 +143,8 @@
   var form = document.getElementById('projectForm');
   if (form) {
     var note = document.getElementById('formNote');
+    var dl = document.getElementById('f-deadline');
+    if (dl) { var t = new Date(); dl.min = t.toISOString().split('T')[0]; }
     // Brief: allow at most 3 personality picks.
     var pboxes = form.querySelectorAll('input[name="personality"]');
     pboxes.forEach(function (box) {
