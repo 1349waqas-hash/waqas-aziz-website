@@ -383,6 +383,9 @@
           if (card.querySelector('a')) {
             badge.innerHTML = 'View case <span aria-hidden="true">\u2197</span>';
             badge.classList.add('show');
+          } else if (card.querySelector('.lightbox-open')) {
+            badge.innerHTML = 'View <span aria-hidden="true">\u2197</span>';
+            badge.classList.add('show');
           }
         });
         card.addEventListener('mouseleave', function () {
@@ -407,6 +410,35 @@
     }, 2800);
   }
 
+
+  /* ---------- Lightbox ---------- */
+  (function () {
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('.lightbox-open'));
+    var lb = document.getElementById('lightbox');
+    if (!lb || !triggers.length) return;
+    var lbImg = document.getElementById('lbImg');
+    var lbCap = document.getElementById('lbCap');
+    var lbi = 0;
+    var showLb = function (i) {
+      lbi = (i + triggers.length) % triggers.length;
+      var t = triggers[lbi];
+      lbImg.src = t.getAttribute('data-full');
+      lbImg.alt = t.querySelector('img').alt;
+      lbCap.textContent = t.getAttribute('data-title');
+    };
+    var openLb = function (i) { showLb(i); lb.hidden = false; document.body.style.overflow = 'hidden'; };
+    var closeLb = function () { lb.hidden = true; document.body.style.overflow = ''; };
+    triggers.forEach(function (t, i) { t.addEventListener('click', function () { openLb(i); }); });
+    document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); showLb(lbi - 1); });
+    document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); showLb(lbi + 1); });
+    lb.querySelectorAll('[data-lb-close]').forEach(function (el) { el.addEventListener('click', closeLb); });
+    document.addEventListener('keydown', function (e) {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') closeLb();
+      else if (e.key === 'ArrowLeft') showLb(lbi - 1);
+      else if (e.key === 'ArrowRight') showLb(lbi + 1);
+    });
+  })();
   /* ---------- Reveal on scroll ---------- */
   if (!reduceMotion && 'IntersectionObserver' in window) {
 var io = new IntersectionObserver(function (entries) {
