@@ -734,3 +734,18 @@ main { padding-top: var(--header-h); }
   .marquee-track { animation: none; }
   .reveal { transition-delay: 0s; }
 }
+
+/* ---------- Brief questionnaire ---------- */
+.form-section-title { font-size: 1.25rem; margin: 0.5rem 0 0; }
+.label-like { font-size: 0.92rem; font-weight: 600; }
+.check-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.check-group label {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.88rem; font-weight: 500; cursor: pointer;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  padding: 0.55rem 1.05rem; color: var(--text-dim);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.check-group label:hover { border-color: var(--green); color: var(--text); }
+.check-group input[type="checkbox"] { accent-color: var(--green); width: 1rem; height: 1rem; margin: 0; }
+.check-group label:has(input:checked) { border-color: var(--green); color: var(--green); background: rgba(57, 230, 0, 0.07); }

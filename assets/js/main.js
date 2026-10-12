@@ -143,6 +143,14 @@
   var form = document.getElementById('projectForm');
   if (form) {
     var note = document.getElementById('formNote');
+    // Brief: allow at most 3 personality picks.
+    var pboxes = form.querySelectorAll('input[name="personality"]');
+    pboxes.forEach(function (box) {
+      box.addEventListener('change', function () {
+        var checked = form.querySelectorAll('input[name="personality"]:checked');
+        if (checked.length > 3) box.checked = false;
+      });
+    });
     function setInvalid(input, bad) {
       var field = input.closest('.field');
       if (field) field.classList.toggle('invalid', bad);
@@ -197,7 +205,9 @@
       btn.disabled = true;
       btn.textContent = 'Sending...';
       var data = {};
-      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      new FormData(form).forEach(function (v, k) {
+        data[k] = (data[k] === undefined) ? v : data[k] + ', ' + v;
+      });
       fetch(cfg.formEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -288,7 +298,7 @@
 
   /* ---------- Reveal on scroll ---------- */
   if (!reduceMotion && 'IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
+var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
