@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.waqasaziz.portfolio",
+    "sha256_cert_fingerprints": ["64:E2:2F:64:69:C2:27:4C:B8:B2:8F:88:72:6D:9E:AF:C6:F7:62:BC:54:75:B5:84:04:CB:F2:1D:88:F5:71:DE"]
+  }
+}]

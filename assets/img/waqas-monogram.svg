@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000">
+  <!-- Generator: Adobe Illustrator 30.2.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: url(#linear-gradient2);
+      }
+
+      .st1 {
+        fill: #fff;
+      }
+
+      .st2 {
+        fill: url(#linear-gradient1);
+      }
+
+      .st3, .st4 {
+        fill: none;
+      }
+
+      .st5 {
+        fill: url(#radial-gradient);
+      }
+
+      .st4 {
+        opacity: .05;
+        stroke: #4fe62e;
+      }
+
+      .st6 {
+        fill: url(#diagLines);
+      }
+
+      .st7 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-1735.48" y1="916.71" x2="-1733.49" y2="914.71" gradientTransform="translate(1422777.26 330156.19) scale(820 -360)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#060907"/>
+      <stop offset=".5" stop-color="#050705"/>
+      <stop offset="1" stop-color="#02100a"/>
+    </linearGradient>
+    <pattern id="diagLines" x="0" y="0" width="90" height="90" patternTransform="translate(1943.16 -10643.92) rotate(28) scale(1 -1)" patternUnits="userSpaceOnUse" viewBox="0 0 90 90">
+      <g>
+        <rect class="st3" width="90" height="90"/>
+        <line class="st4" y1="90"/>
+      </g>
+    </pattern>
+    <radialGradient id="radial-gradient" cx="-1733.2" cy="915.83" fx="-1733.2" fy="915.83" r=".92" gradientTransform="translate(901763.43 476732.15) scale(520 -520)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fe62e" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#4fe62e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient1" x1="363.95" y1="498.41" x2="577.32" y2="498.41" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fd62b"/>
+      <stop offset="1" stop-color="#37b81e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient2" x1="212.77" y1="498.38" x2="427.84" y2="498.38" xlink:href="#linear-gradient1"/>
+  </defs>
+  <rect class="st7" width="1000" height="1000"/>
+  <rect class="st6" x="57.78" y="14.65" width="1000" height="1000"/>
+  <circle class="st5" cx="500" cy="500" r="477.45"/>
+  <g>
+    <path class="st1" d="M785.41,669.02l-114.67-.21c-.7,0-1.34-.41-1.64-1.04l-93.83-198.36c-.22-.46-.23-1-.03-1.47l55.53-133.33c.61-1.46,2.66-1.5,3.32-.06l152.96,331.9c.55,1.2-.33,2.58-1.65,2.57Z"/>
+    <path class="st2" d="M577.18,532.95l-54.59,131.78c-.6,1.46-2.65,1.5-3.32.08l-155.14-331.1c-.56-1.2.31-2.58,1.64-2.59l114.76-.14c.7,0,1.34.4,1.64,1.03l94.97,199.46c.22.46.23,1,.04,1.47Z"/>
+    <path class="st0" d="M427.7,533.06l-55.58,131.45c-.61,1.45-2.64,1.49-3.31.07l-155.86-330.68c-.57-1.2.31-2.59,1.64-2.59l118.43-.15c.71,0,1.35.41,1.65,1.05l93.01,199.38c.22.47.23,1,.03,1.47Z"/>
+  </g>
+</svg>
