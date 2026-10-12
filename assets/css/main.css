@@ -818,3 +818,19 @@ main { padding-top: var(--header-h); }
 .roll > span { grid-area: 1 / 1; transform: translateY(110%); transition: transform 0.33s cubic-bezier(0,0,0,1); white-space: nowrap; }
 .roll > span.on { transform: translateY(0); }
 .roll > span.bye { transform: translateY(-110%); transition: transform 0.13s cubic-bezier(0.75,0,0.85,1); }
+
+/* ---------- Logo hover shine (portfolio archive) ---------- */
+.archive-grid .work-card .thumb { position: relative; }
+.archive-grid .work-card .thumb::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.16) 50%, transparent 58%);
+  transform: translateX(-130%);
+}
+.archive-grid .work-card:hover .thumb::after {
+  transform: translateX(130%);
+  transition: transform 0.9s cubic-bezier(0, 0, 0, 1);
+}
+.archive-grid .work-card:hover .thumb img { transform: scale(1.07); }
+@media (prefers-reduced-motion: reduce) {
+  .archive-grid .work-card .thumb::after { display: none; }
+}
