@@ -856,16 +856,3 @@ button.thumb img { display: block; }
 .lb-next { right: 1rem; top: 50%; transform: translateY(-50%); }
 @media (max-width: 640px) { .lb-prev { left: 0.4rem; } .lb-next { right: 0.4rem; } }
 @media (prefers-reduced-motion: reduce) { .lb-figure img { animation: none; } }
-
-/* ---------- Masonry layout (archive) ---------- */
-.work-grid.archive-grid { display: block; columns: 3; column-gap: clamp(1.25rem, 2.5vw, 2rem); }
-.work-grid.archive-grid .work-card { break-inside: avoid; margin-bottom: clamp(1.25rem, 2.5vw, 2rem); }
-.work-grid.archive-grid .thumb { aspect-ratio: auto; }
-.work-grid.archive-grid .thumb img { height: auto; object-fit: contain; }
-@media (max-width: 1080px) { .work-grid.archive-grid { columns: 2; } }
-@media (max-width: 560px) {
-  .work-grid.archive-grid { column-gap: 1rem; }
-  .work-grid.archive-grid .work-card { margin-bottom: 1rem; }
-  .work-grid.archive-grid .card-body { padding: 0.9rem 1rem 1.1rem; }
-  .work-grid.archive-grid h3 { font-size: 1.05rem; }
-}
