@@ -749,3 +749,9 @@ main { padding-top: var(--header-h); }
 .check-group label:hover { border-color: var(--green); color: var(--text); }
 .check-group input[type="checkbox"] { accent-color: var(--green); width: 1rem; height: 1rem; margin: 0; }
 .check-group label:has(input:checked) { border-color: var(--green); color: var(--green); background: rgba(57, 230, 0, 0.07); }
+
+/* Grid cascade: cards enter one after another */
+.work-grid .work-card:nth-child(4n+1) { --d: 0s; }
+.work-grid .work-card:nth-child(4n+2) { --d: .09s; }
+.work-grid .work-card:nth-child(4n+3) { --d: .18s; }
+.work-grid .work-card:nth-child(4n+4) { --d: .27s; }
