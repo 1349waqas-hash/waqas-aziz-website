@@ -713,3 +713,24 @@ main { padding-top: var(--header-h); }
 /* Case study deliverables block */
 .deliverables { margin: 2.5rem 0 0; padding: 2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-alt); }
 .deliverables h2 { font-size: 1.4rem; margin-bottom: 1.25rem; }
+
+/* ---------- Motion extras ---------- */
+.reveal { transition-delay: var(--d, 0s); }
+
+/* Marquee strip */
+.marquee { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.05rem 0; background: var(--bg); }
+.marquee-track { display: flex; width: max-content; }
+.marquee-group { display: flex; align-items: center; gap: 2.75rem; padding-right: 2.75rem; white-space: nowrap; }
+.marquee-track { animation: marquee 32s linear infinite; }
+.marquee-group span { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); }
+.marquee-group .dot { color: var(--green); font-size: 1.1rem; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Button arrow nudge */
+.btn .arrow { display: inline-block; transition: transform 0.25s var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .reveal { transition-delay: 0s; }
+}
