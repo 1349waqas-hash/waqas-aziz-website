@@ -13,7 +13,7 @@ window.SITE_CONFIG = {
 
   // Newsletter endpoint (same kind of service as above). Until set, the
   // newsletter form explains the signup is not active yet.
-  newsletterEndpoint: '',
+  newsletterEndpoint: 'https://formspree.io/f/xkjovlzn',
 
   // Real checkout happens on Gumroad (secure checkout + automatic delivery).
   // Replace each value with the exact product URL from the Gumroad dashboard.
