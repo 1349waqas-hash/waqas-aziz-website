@@ -9,7 +9,7 @@ window.SITE_CONFIG = {
   // Contact form endpoint. Paste a Formspree or Web3Forms endpoint here,
   // e.g. 'https://formspree.io/f/xxxxxx'. Until set, the form shows
   // WhatsApp and email alternatives instead of a fake success message.
-  formEndpoint: '',
+  formEndpoint: 'https://formspree.io/f/mppqjelr',
 
   // Newsletter endpoint (same kind of service as above). Until set, the
   // newsletter form explains the signup is not active yet.
@@ -19,7 +19,7 @@ window.SITE_CONFIG = {
   // Replace each value with the exact product URL from the Gumroad dashboard.
   gumroad: {
     store: 'https://waqasdesigns4.gumroad.com',
-    logoToClient: 'https://waqasdesigns4.gumroad.com'
+    logoToClient: 'https://waqasdesigns4.gumroad.com/l/mxgul'
   },
 
   // Real contact channels (verified).
