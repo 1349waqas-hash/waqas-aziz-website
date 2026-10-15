@@ -1,5 +1,5 @@
 /* Waqas Aziz portfolio PWA service worker. Cache-first with background refresh. */
-const CACHE = 'waqas-aziz-v3';
+const CACHE = 'waqas-aziz-v4';
 const CORE = [
   '/',
   '/index.html',

@@ -407,7 +407,7 @@
       cur.classList.remove('on'); cur.classList.add('bye');
       nxt.classList.remove('bye'); nxt.classList.add('on');
       setTimeout(function () { cur.classList.remove('bye'); }, 220);
-    }, 2800);
+    }, 4000);
   }
 
 
@@ -488,8 +488,8 @@ var io = new IntersectionObserver(function (entries) {
     function start() {
       if (reduceMotion) return;
       stop();
-      slideTimer = setInterval(function () { go((current + 1) % pages()); }, 4000);
-      dotTimer = setInterval(cycleDot, 2600);
+      slideTimer = setInterval(function () { go((current + 1) % pages()); }, 6000);
+      dotTimer = setInterval(cycleDot, 3500);
     }
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
