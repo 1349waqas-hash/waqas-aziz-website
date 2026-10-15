@@ -266,6 +266,11 @@
         showNote('success', 'Message sent. Thank you.',
           'Your project brief is on its way. Expect a reply within 2 business days. ' +
           'Need it faster? Message on <a href="' + cfg.whatsapp + '" target="_blank" rel="noopener">WhatsApp</a>.');
+        var payPanel = document.getElementById('payPanel');
+        if (payPanel) {
+          payPanel.hidden = false;
+          payPanel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+        }
       }).catch(function () {
         showNote('error', 'Something went wrong sending your message.',
           'Please try again, or reach out directly on <a href="' + cfg.whatsapp + '" target="_blank" rel="noopener">WhatsApp</a> ' +

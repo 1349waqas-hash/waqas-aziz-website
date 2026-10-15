@@ -930,3 +930,11 @@ button.thumb img { display: block; }
 }
 .work-card, .product-card, .type-card{position:relative}
 @media (prefers-reduced-motion: reduce){ .neon-ring::before,.neon-ring::after{animation:none} }
+
+/* Post-submit payment panel (2026-10-15) */
+.pay-panel{position:relative;margin-top:1.75rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-alt);padding:1.9rem}
+.pay-panel h3{font-size:1.35rem;margin-bottom:.6rem}
+.pay-panel p{color:var(--text-dim);font-size:.97rem;line-height:1.65}
+.pay-group{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin:1.2rem 0 .55rem}
+.pay-methods{display:flex;flex-wrap:wrap;gap:.55rem}
+.pay-note{margin-top:1.2rem;font-size:.88rem}
