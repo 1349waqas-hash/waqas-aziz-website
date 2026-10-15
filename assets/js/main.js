@@ -489,7 +489,7 @@ var io = new IntersectionObserver(function (entries) {
       if (reduceMotion) return;
       stop();
       slideTimer = setInterval(function () { go((current + 1) % pages()); }, 4000);
-      dotTimer = setInterval(cycleDot, 2000);
+      dotTimer = setInterval(cycleDot, 2600);
     }
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
