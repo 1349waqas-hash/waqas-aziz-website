@@ -451,6 +451,52 @@ var io = new IntersectionObserver(function (entries) {
     document.querySelectorAll('.reveal, .mask-h').forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* ---------- Testimonials slider (neon frame + decorative dots) ---------- */
+  (function () {
+    var slider = document.getElementById('tSlider');
+    var track = document.getElementById('tTrack');
+    var dotsWrap = document.getElementById('tDots');
+    if (!slider || !track || !dotsWrap) return;
+    var slides = track.children.length;
+    var DOTS = 5, current = 0, dotPos = 0, slideTimer = null, dotTimer = null;
+    function perView() {
+      if (window.innerWidth >= 1200) return 3;
+      if (window.innerWidth >= 900) return 2;
+      return 1;
+    }
+    function pages() { return Math.max(1, slides - perView() + 1); }
+    for (var i = 0; i < DOTS; i++) {
+      var d = document.createElement('span');
+      d.className = 't-dot' + (i === 0 ? ' active' : '');
+      dotsWrap.appendChild(d);
+    }
+    function cycleDot() {
+      dotPos = (dotPos + 1) % DOTS;
+      for (var j = 0; j < dotsWrap.children.length; j++) {
+        dotsWrap.children[j].classList.toggle('active', j === dotPos);
+      }
+    }
+    function go(i) {
+      current = Math.max(0, Math.min(i, pages() - 1));
+      track.style.transform = 'translateX(-' + (current * (100 / perView())) + '%)';
+    }
+    function stop() {
+      if (slideTimer) clearInterval(slideTimer);
+      if (dotTimer) clearInterval(dotTimer);
+      slideTimer = null; dotTimer = null;
+    }
+    function start() {
+      if (reduceMotion) return;
+      stop();
+      slideTimer = setInterval(function () { go((current + 1) % pages()); }, 4000);
+      dotTimer = setInterval(cycleDot, 2000);
+    }
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+    window.addEventListener('resize', function () { go(current); });
+    go(0); start();
+  })();
+
   /* ---------- Footer year ---------- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
