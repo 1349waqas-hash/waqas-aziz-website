@@ -902,3 +902,11 @@ button.thumb img { display: block; }
 }
 @keyframes kickerShine{ 0%{background-position:120% 0} 100%{background-position:-130% 0} }
 @media (prefers-reduced-motion: reduce){ .kicker-shine,.kicker-shine::before{animation:none} }
+
+/* Count-up numbers keep the big stat size (2026-10-15) */
+.hero-meta strong span{font-family:inherit;font-size:inherit;letter-spacing:inherit;text-transform:none;color:inherit}
+
+/* Button click color change (2026-10-15) */
+.btn-primary:active, .btn-primary.btn-flash{ background:#FFFFFF; color:#04140a; }
+.btn-ghost:active, .btn-ghost.btn-flash{ background:var(--green); color:#04140a; border-color:var(--green); }
+.btn-dark:active, .btn-dark.btn-flash{ background:var(--green); color:#04140a; }

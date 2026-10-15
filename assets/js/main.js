@@ -497,6 +497,43 @@ var io = new IntersectionObserver(function (entries) {
     go(0); start();
   })();
 
+  /* ---------- Stat count-up ---------- */
+  (function () {
+    var nums = document.querySelectorAll('[data-count]');
+    if (!nums.length) return;
+    function run(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      if (reduceMotion || !target) { el.textContent = target; return; }
+      var dur = 1600, t0 = null;
+      function step(ts) {
+        if (!t0) t0 = ts;
+        var k = Math.min(1, (ts - t0) / dur);
+        var eased = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(target * eased);
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if ('IntersectionObserver' in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { run(en.target); cio.unobserve(en.target); }
+        });
+      }, { threshold: 0.4 });
+      nums.forEach(function (el) { cio.observe(el); });
+    } else {
+      nums.forEach(run);
+    }
+  })();
+
+  /* ---------- Button click color flash ---------- */
+  document.querySelectorAll('.btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      b.classList.add('btn-flash');
+      setTimeout(function () { b.classList.remove('btn-flash'); }, 550);
+    });
+  });
+
   /* ---------- Footer year ---------- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
