@@ -910,3 +910,23 @@ button.thumb img { display: block; }
 .btn-primary:active, .btn-primary.btn-flash{ background:#FFFFFF; color:#04140a; }
 .btn-ghost:active, .btn-ghost.btn-flash{ background:var(--green); color:#04140a; border-color:var(--green); }
 .btn-dark:active, .btn-dark.btn-flash{ background:var(--green); color:#04140a; }
+
+/* Neon ring for all grid cards (2026-10-15) */
+.neon-ring{isolation:isolate}
+.neon-ring::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:2px; pointer-events:none;
+  background:conic-gradient(from var(--na), rgba(57,230,0,.18) 0deg, rgba(57,230,0,.18) 250deg, #39E600 310deg, #B4FF8F 340deg, #39E600 355deg, rgba(57,230,0,.18) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation:tNeonSpin 12s linear infinite;
+}
+.neon-ring::before{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:2px; pointer-events:none; z-index:-1;
+  background:conic-gradient(from var(--na), transparent 250deg, rgba(57,230,0,.5) 320deg, transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  filter:blur(9px);
+  animation:tNeonSpin 12s linear infinite;
+}
+.work-card, .product-card, .type-card{position:relative}
+@media (prefers-reduced-motion: reduce){ .neon-ring::before,.neon-ring::after{animation:none} }
