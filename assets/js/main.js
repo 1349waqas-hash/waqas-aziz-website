@@ -539,6 +539,48 @@ var io = new IntersectionObserver(function (entries) {
     });
   });
 
+  /* ---------- Header brand: logo wrap + typewriter subtitle ---------- */
+  (function () {
+    var header = document.getElementById('siteHeader');
+    if (!header) return;
+    var mark = header.querySelector('.brand-mark');
+    if (mark && !mark.parentElement.classList.contains('brand-mark-wrap')) {
+      var wrap = document.createElement('span');
+      wrap.className = 'brand-mark-wrap';
+      mark.parentElement.insertBefore(wrap, mark);
+      wrap.appendChild(mark);
+    }
+    var sub = header.querySelector('.brand-text small');
+    if (!sub) return;
+    var full = sub.textContent.trim();
+    if (reduceMotion) return;
+    sub.setAttribute('aria-label', full);
+    sub.innerHTML = '';
+    var sizer = document.createElement('span');
+    sizer.className = 'sub-sizer';
+    sizer.textContent = full;
+    sizer.setAttribute('aria-hidden', 'true');
+    var typed = document.createElement('span');
+    typed.className = 'sub-typed';
+    typed.setAttribute('aria-hidden', 'true');
+    sub.appendChild(sizer);
+    sub.appendChild(typed);
+    var i = 0, deleting = false;
+    function tick() {
+      if (!deleting) {
+        i++;
+        typed.textContent = full.slice(0, i);
+        if (i === full.length) { deleting = true; return setTimeout(tick, 4200); }
+        return setTimeout(tick, 230);
+      }
+      i--;
+      typed.textContent = full.slice(0, i);
+      if (i === 0) { deleting = false; return setTimeout(tick, 900); }
+      return setTimeout(tick, 110);
+    }
+    setTimeout(tick, 600);
+  })();
+
   /* ---------- Footer year ---------- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
